@@ -1,1 +1,254 @@
-# top_be
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>データ入力用ボタン</title>
+  <style>
+    body {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      font-family: 'Arial', sans-serif;
+      padding: 10px;
+    }
+    h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      white-space: pre-wrap;
+      color: yellow;
+    }
+    .copy-button {
+      padding: 8px 8px;
+      min-width: 120px;
+      color: #fff;
+      background-color: #2980b9;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: 0.5px;
+      text-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
+    }
+    .copy-button:hover {
+      background-color: #3498db;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .button-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .visible-input, textarea.visible-input {
+      padding: 6px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      background-color: #34495e;
+      color: #cccecf;
+    }
+    .memo-area {
+      width: 50%;
+      height: 55px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      resize: both;
+      overflow: auto;
+    }
+    .size-selector {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>送信不可の際の注意点&#10;※お問い合わせフォームがない場合のみ、お問い合わせフォーム無し&#10;※サイトがない開けない場合のみ、サイトが開けないを選択する</h3>
+  <div class="size-selector">
+    <label for="fontSizeSelector">文字サイズ:</label>
+    <select id="fontSizeSelector" onchange="changeMemoFontSize()">
+      <option value="12px">12px（小）</option>
+      <option value="14px" selected>14px（標準）</option>
+      <option value="16px">16px（やや大）</option>
+      <option value="25px">25px（大）</option>
+      <option value="35px">35px（特大）</option>
+    </select>
+  </div>
+  <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 10px;">
+    <textarea class="memo-area" placeholder="ここに作業番号を記入しておく"></textarea>
+    <div class="input-group" style="flex-shrink: 0;">
+      <button class="copy-button" onclick="copyText('date')">日付</button>
+      <input type="text" id="date" class="visible-input">
+    </div>
+  </div>
+  <div class="button-container">
+    
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy1')">会社名</button>
+    <input type="text" id="copy1" value="株式会社日本経営総合研究所" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy2')">会社名(かな)</button>
+    <input type="text" id="copy2" value="かぶしきがいしゃにほんけいえいそうごうけんきゅうじょ" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy3')">会社名(カナ)</button>
+    <input type="text" id="copy3" value="カブシキガイシャニホンケイエイソウゴウケンキュウジョ" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy4')">部署名</button>
+    <input type="text" id="copy4" value="" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy5')">役職</button>
+    <input type="text" id="copy5" value="代表取締役" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy6')">業種</button>
+    <input type="text" id="copy6" value="" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy7')">名前</button>
+    <input type="text" id="copy7" value="田中直樹" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy8')">性別</button>
+    <input type="text" id="copy8" value="男" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy9')">フリガナ</button>
+    <input type="text" id="copy9" value="タナカナオキ" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy10')">ふりがな</button>
+    <input type="text" id="copy10" value="たなかなおき" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy11')">年齢</button>
+    <input type="text" id="copy11" value="00" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy12')">生年月日</button>
+    <input type="text" id="copy12" value="0000年0月0日" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy13')">姓</button>
+    <input type="text" id="copy13" value="田中" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy14')">名</button>
+    <input type="text" id="copy14" value="直樹" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy15')">セイ</button>
+    <input type="text" id="copy15" value="タナカ" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy16')">メイ</button>
+    <input type="text" id="copy16" value="ナオキ" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy17')">せい</button>
+    <input type="text" id="copy17" value="たなか" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy18')">めい</button>
+    <input type="text" id="copy18" value="なおき" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy19')">会社HP(URL)</button>
+    <input type="text" id="copy19" value="https://www.jbci.co.jp/" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy20')">メール</button>
+    <input type="text" id="copy20" value="naoki_tanaka@jbci.co.jp" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy21')">FAX</button>
+    <input type="text" id="copy21" value="03-6759-9676" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy22')">希望の連絡方法</button>
+    <input type="text" id="copy22" value="メール" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy23')">電話</button>
+    <input type="text" id="copy23" value="03-4446-7337" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy24')">電話(ハイフンなし)</button>
+    <input type="text" id="copy24" value="0344467337" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy25')">郵便番号</button>
+    <input type="text" id="copy25" value="102-0083" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy26')">郵便番号(ハイフンなし)</button>
+    <input type="text" id="copy26" value="1020083" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy27')">住所</button>
+    <input type="text" id="copy27" value="東京都千代田区麹町5-7-2 MFPR麹町ビル5階" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy28')">都道府県</button>
+    <input type="text" id="copy28" value="東京都" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy29')">市区町村</button>
+    <input type="text" id="copy29" value="千代田区麹町5" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy30')">番地・建物名</button>
+    <input type="text" id="copy30" value="5-7-2 MFPR麹町ビル5階" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy31')">建物名</button>
+    <input type="text" id="copy31" value="麹町ビル5階" class="visible-input" >
+  </div>
+  <div class="input-group">
+    <button class="copy-button" onclick="copyText('copy32')">件名</button>
+    <input type="text" id="copy32" value="資本提携のご相談" class="visible-input" >
+  </div>
+  <div class="input-group" style="grid-column: span 2;">
+    <button class="copy-button" onclick="copyWithLineBreak('copyTextArea1')">お問い合わせ本文1</button>
+    <textarea id="copyTextArea1" class="visible-input" rows="10">シートにある本文をコピー。</textarea>
+  </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      document.getElementById('date').value = `${yyyy}/${mm}/${dd}`;
+    };
+
+    function copyText(id) {
+      const input = document.getElementById(id);
+      if (input) {
+        navigator.clipboard.writeText(input.value);
+      }
+    }
+
+    function copyWithLineBreak(id) {
+      const textarea = document.getElementById(id);
+      if (textarea) {
+        navigator.clipboard.writeText(textarea.value);
+      }
+    }
+
+    function changeMemoFontSize() {
+      const selectedSize = document.getElementById('fontSizeSelector').value;
+      document.querySelector('.memo-area').style.fontSize = selectedSize;
+    }
+  </script>
+</body>
+</html>
